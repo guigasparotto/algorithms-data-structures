@@ -8,9 +8,9 @@ import java.util.function.Consumer;
 public class SortingComparison {
 
     public static void main(String[] args) {
-        var size = 10_000;
+        var size = 100_000;
         var minBound = 0;
-        var maxBound = 100_000;
+        var maxBound = 5_000_000;
 
         System.out.println("Insertion sort:");
         var arr = Utils.createRandomArray(size, minBound, maxBound);
@@ -35,5 +35,17 @@ public class SortingComparison {
         Consumer<Integer[]> shell = Insertion::sort;
         Utils.runWithTime(shell, arr4);
         System.out.println("Sorted: " + Utils.isSorted(arr4));
+
+        System.out.println("\nMerge sort:");
+        var arr5 = Utils.createRandomArray(size, minBound, maxBound);
+        Consumer<Integer[]> mergeSort = MergeSort::sort;
+        Utils.runWithTime(mergeSort, arr5);
+        System.out.println("Sorted: " + Utils.isSorted(arr5));
+
+        System.out.println("\nMerge sort in-place:");
+        var arr6 = Utils.createRandomArray(size, minBound, maxBound);
+        Consumer<Integer[]> inPlace = MergeSort::inPlace;
+        Utils.runWithTime(inPlace, arr6);
+        System.out.println("Sorted: " + Utils.isSorted(arr6));
     }
 }
