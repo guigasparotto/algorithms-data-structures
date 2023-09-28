@@ -32,12 +32,28 @@ public class Utils {
         long duration = System.nanoTime() - before;
         System.out.println("Time in nanos: " + duration);
         System.out.println("Time in millis: " + TimeUnit.NANOSECONDS.toMillis(duration));
+    }
 
+    public static void runWithTime(Consumer<int[]> method, int[] arr) {
+        long before = System.nanoTime();
+        method.accept(arr);
+        long duration = System.nanoTime() - before;
+        System.out.println("Time in nanos: " + duration);
+        System.out.println("Time in millis: " + TimeUnit.NANOSECONDS.toMillis(duration));
     }
 
     public static <T extends Comparable<? super T>> boolean isSorted(T[] array) {
         for (int i = 1; i < array.length; i++) {
             if (array[i].compareTo(array[i - 1]) < 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isSorted(int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] < array[i - 1]) {
                 return false;
             }
         }
