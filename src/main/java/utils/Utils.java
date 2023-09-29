@@ -1,5 +1,6 @@
 package utils;
 
+import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
@@ -64,5 +65,16 @@ public class Utils {
         return Stream.generate(() -> ThreadLocalRandom.current().nextInt(min, max))
                 .limit(size)
                 .toArray(Integer[]::new);
+    }
+
+    public static Integer[][] createMultipleIdenticalArrays(int n, int arrSize, int minBound, int maxBound) {
+        var result = new Integer[n][];
+        var original = createRandomArray(arrSize, minBound, maxBound);
+
+        for (var i = 0; i < result.length; i++) {
+             result[i] = Arrays.copyOfRange(original, 0, original.length);
+        }
+
+        return result;
     }
 }

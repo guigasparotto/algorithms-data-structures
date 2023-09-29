@@ -1,36 +1,32 @@
 package algorithms.sorting;
 
-import algorithms.sorting.Insertion;
 import utils.Utils;
-
-import java.util.Arrays;
-import java.util.function.Consumer;
 
 public class SortingComparison {
 
     public static void main(String[] args) {
-        var arrayNumber = 6;
-        var size = 10_000;
+        var arrayNumber = 8;
+        var size = 10_000_000;
         var minBound = 0;
-        var maxBound = 500_000;
+        var maxBound = 5_000_000;
 
-        var arrays = createMultipleIdenticalArrays(arrayNumber, size, minBound, maxBound);
+        var arrays = Utils.createMultipleIdenticalArrays(arrayNumber, size, minBound, maxBound);
 
-        System.out.println("Insertion sort:");
-        Utils.runWithTime(Insertion::sort, arrays[0]);
-        System.out.println("Sorted: " + Utils.isSorted(arrays[0]));
-
-        System.out.println("\nInsertion sort with shifting right:");
-        Utils.runWithTime(Insertion::sortShift, arrays[1]);
-        System.out.println("Sorted: " + Utils.isSorted(arrays[1]));
-
-        System.out.println("\nSelection sort:");
-        Utils.runWithTime(Selection::sort, arrays[2]);
-        System.out.println("Sorted: " + Utils.isSorted(arrays[2]));
-
-        System.out.println("\nShell sort:");
-        Utils.runWithTime(Insertion::sort, arrays[3]);
-        System.out.println("Sorted: " + Utils.isSorted(arrays[3]));
+//        System.out.println("Insertion sort:");
+//        Utils.runWithTime(Insertion::sort, arrays[0]);
+//        System.out.println("Sorted: " + Utils.isSorted(arrays[0]));
+//
+//        System.out.println("\nInsertion sort with shifting right:");
+//        Utils.runWithTime(Insertion::sortShift, arrays[1]);
+//        System.out.println("Sorted: " + Utils.isSorted(arrays[1]));
+//
+//        System.out.println("\nSelection sort:");
+//        Utils.runWithTime(Selection::sort, arrays[2]);
+//        System.out.println("Sorted: " + Utils.isSorted(arrays[2]));
+//
+//        System.out.println("\nShell sort:");
+//        Utils.runWithTime(Insertion::sort, arrays[3]);
+//        System.out.println("Sorted: " + Utils.isSorted(arrays[3]));
 
         System.out.println("\nMerge sort:");
          Utils.runWithTime(MergeSort::sort, arrays[4]);
@@ -39,16 +35,14 @@ public class SortingComparison {
         System.out.println("\nMerge sort in-place:");
         Utils.runWithTime(MergeSort::inPlace, arrays[5]);
         System.out.println("Sorted: " + Utils.isSorted(arrays[5]));
+
+        System.out.println("\nQuick sort:");
+        Utils.runWithTime(QuickSort::sort, arrays[6]);
+        System.out.println("Sorted: " + Utils.isSorted(arrays[6]));
+
+        System.out.println("\nQuick sort (parallel):");
+        Utils.runWithTime(QuickSort::parallelSort, arrays[7]);
+        System.out.println("Sorted: " + Utils.isSorted(arrays[7]));
     }
 
-    public static Integer[][] createMultipleIdenticalArrays(int n, int arrSize, int minBound, int maxBound) {
-        var result = new Integer[n][];
-        var original = Utils.createRandomArray(arrSize, minBound, maxBound);
-
-        for (var i = 0; i < result.length; i++) {
-             result[i] = Arrays.copyOfRange(original, 0, original.length);
-        }
-
-        return result;
-    }
 }

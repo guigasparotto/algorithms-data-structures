@@ -47,6 +47,8 @@ public class MergeSort {
         sort(arr, 0, arr.length);
     }
 
+    // This is called top-bottom approach, meaning there is also a bottom-up approach
+    // see page 277 of the Algorithms book
     public static <T extends Comparable<? super T>> void sort(T[] arr, int start, int end) {
         // base case for recursion, if the size of the subarray is 1 or 0
         if (end - start <= 1) return;
@@ -72,6 +74,7 @@ public class MergeSort {
         System.arraycopy(merged, 0, arr, start, merged.length);
     }
 
+    @SuppressWarnings("unchecked")
     public static <T extends Comparable<? super T>> T[] merge(T[] left, T[] right) {
         var lengthL = left.length;
         var lengthR = right.length;
@@ -105,6 +108,7 @@ public class MergeSort {
         inPlace(arr, 0, arr.length);
     }
 
+    @SuppressWarnings("unchecked")
     public static <T extends Comparable<? super T>> void inPlace(T[] arr, int start, int end) {
         // base case for recursion, if the size of the subarray is 1 or 0
         if (end - start <= 1) return;
